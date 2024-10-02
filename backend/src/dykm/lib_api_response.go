@@ -15,9 +15,9 @@ type Tally struct {
     Ips       int `json:"ips"`
     Names     int `json:"names"`
     Passwords int `json:"passwords"`
-    Addresses  int `json:"addresses"`
-    Companies  int `json:"companies"`
-    Other      int `json:"other"`
+    Addresses int `json:"addresses"`
+    Companies int `json:"companies"`
+    Other     int `json:"other"`
 }
 
 // Serializes a Tally to a JSON string, returning
@@ -62,16 +62,16 @@ func TallyFromJson(json_string string) Result[Tally] {
 func (tally1 Tally) add(tally2 Tally) Tally {
 	return Tally{
 		Usernames: tally1.Usernames + tally2.Usernames,
-		Emails:    tally1.Emails + tally2.Emails,
-		Phones:    tally1.Phones + tally2.Phones,
-		Hashes:    tally1.Hashes + tally2.Hashes,
-		Salts:     tally1.Salts + tally2.Salts,
-		Ips:       tally1.Ips + tally2.Ips,
-		Names:     tally1.Names + tally2.Names,
+		Emails:    tally1.Emails    + tally2.Emails,
+		Phones:    tally1.Phones    + tally2.Phones,
+		Hashes:    tally1.Hashes    + tally2.Hashes,
+		Salts:     tally1.Salts     + tally2.Salts,
+		Ips:       tally1.Ips       + tally2.Ips,
+		Names:     tally1.Names     + tally2.Names,
 		Passwords: tally1.Passwords + tally2.Passwords,
 		Addresses: tally1.Addresses + tally2.Addresses,
 		Companies: tally1.Companies + tally2.Companies,
-		Other:     tally1.Other + tally2.Other,
+		Other:     tally1.Other     + tally2.Other,
 	};
 }
 
