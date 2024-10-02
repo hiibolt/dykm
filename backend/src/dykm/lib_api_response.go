@@ -44,11 +44,10 @@ func (tally Tally) JSONString() string {
 
 // Deserializes a Tally from a JSON string, returning
 //  a Result containing the Tally or an error
-func TallyFromJson(json_string string) Result[Tally] {
+func TallyFromJSON(json_string string) Result[Tally] {
 	res := Tally{};
-	str := `{"usernames": 1, "emails": 2, "phones": 3, "hashes": 4, "salts": 5, "ips": 6, "names": 7, "passwords": 8, "addresses": 9, "companies": 10, "other": 11}`;
 	
-	err := json.Unmarshal([]byte(str), &res);
+	err := json.Unmarshal([]byte(json_string), &res);
 
 	if err != nil {
 		return Err[Tally]( "Failed to deserialize: " + err.Error() );
