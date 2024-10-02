@@ -1,22 +1,36 @@
 package main;
 
-/*
-func TallyResults ( APIRequest req ) Result[APIResponse] {
-    // create a return value
-    Result[APIResponse] result;
-
+func TallyResults ( req APIRequest) Result[APIResponse] {
+    var result Result[APIResponse];
     
-      check the PIIType of the request
-      
-      depending on the type, call the necessary APIs.
+    switch (req.PIIType) {
+      case "email":
+        result.value.email += 0; //SnusbaseQuery(req.PII); Call to SnusbaseQuery
 
-      API Types:
-         Snusbase Query:   pw, username, hash, ip, email, name
-         Snusbase Hashing: hash, pw
-         Snusbase Geo:     ip
-         Sherlock:         username
-         BulkVS:           phone
-    
+      case "phone":
+        result.value.phone += 0; // BulkVSQuery(req.PII);
+
+      case "username":
+        result.value.username += 0;// SherlockQuery(req.PII);
+        result.value.username += 0;// SnusbaseQuery(req.PII);
+
+      case "name":
+        result.value.name += 0; // SnusbaseQuery(req.PII);
+
+      case "ip":
+        result.value.ip += 0; // SnusbaseQuery(req.PII);
+        result.value.ip += 0; // SnusbaseGeo(req.PII);
+
+      case "hash":
+        result.value.hash += 0; // SnusbaseQuery(req.PII);
+        result.value.hash += 0; // SnusbaseHashing(req.PII);
+
+      case "password":
+        result.value.password += 0; // SnusbaseQuery(req.PII);
+
+      default:
+        break;
+    } 
 
     return result;
-}*/
+}
