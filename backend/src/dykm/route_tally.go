@@ -1,37 +1,37 @@
 package main;
 
-func TallyResults ( req APIRequest) Result[APIResponse] {
-    var result Result[APIResponse];
+func TallyResults ( req APIRequest) Result[Tally] {
+    var result Tally;
     
     switch (req.PIIType) {
       case "email":
-        result.value.email += 0; //SnusbaseQuery(req.PII); Call to SnusbaseQuery
+        result.Emails += 0; //SnusbaseQuery(req.PII); Call to SnusbaseQuery
 
       case "phone":
-        result.value.phone += 0; // BulkVSQuery(req.PII);
+        result.Phones += 0; // BulkVSQuery(req.PII);
 
       case "username":
-        result.value.username += 0;// SherlockQuery(req.PII);
-        result.value.username += 0;// SnusbaseQuery(req.PII);
+        result.Usernames += 0;// SherlockQuery(req.PII);
+        result.Usernames += 0;// SnusbaseQuery(req.PII);
 
       case "name":
-        result.value.name += 0; // SnusbaseQuery(req.PII);
+        result.Names += 0; // SnusbaseQuery(req.PII);
 
       case "ip":
-        result.value.ip += 0; // SnusbaseQuery(req.PII);
-        result.value.ip += 0; // SnusbaseGeo(req.PII);
+        result.Ips += 0; // SnusbaseQuery(req.PII);
+        result.Ips += 0; // SnusbaseGeo(req.PII);
 
       case "hash":
-        result.value.hash += 0; // SnusbaseQuery(req.PII);
-        result.value.hash += 0; // SnusbaseHashing(req.PII);
+        result.Hashes += 0; // SnusbaseQuery(req.PII);
+        result.Hashes += 0; // SnusbaseHashing(req.PII);
 
       case "password":
-        result.value.password += 0; // SnusbaseQuery(req.PII);
-        result.value.password += 0; //SnusBaseHashing(req.PII);
+        result.Passwords += 0; // SnusbaseQuery(req.PII);
+        result.Passwords += 0; //SnusBaseHashing(req.PII);
 
       default:
         break;
     } 
 
-    return result;
+    return Ok(result);
 }
