@@ -27,6 +27,7 @@ func TallyResults ( req APIRequest) Result[APIResponse] {
 
       case "password":
         result.value.password += 0; // SnusbaseQuery(req.PII);
+        result.value.password += 0; //SnusBaseHashing(req.PII);
 
       default:
         break;
