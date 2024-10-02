@@ -2,7 +2,6 @@ package main;
 
 import (
 	"encoding/json"
-	"fmt"
 	"strconv"
 );
 
@@ -49,16 +48,11 @@ func TallyFromJson(json_string string) Result[Tally] {
 	res := Tally{};
 	str := `{"usernames": 1, "emails": 2, "phones": 3, "hashes": 4, "salts": 5, "ips": 6, "names": 7, "passwords": 8, "addresses": 9, "companies": 10, "other": 11}`;
 	
-    fmt.Println(res)
-	
 	err := json.Unmarshal([]byte(str), &res);
 
 	if err != nil {
 		return Err[Tally]( "Failed to deserialize: " + err.Error() );
 	}
-
-    fmt.Println(res)
-	fmt.Println("Deserialized tally: ");
 
 	return Ok( res );
 }
