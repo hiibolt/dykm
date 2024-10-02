@@ -60,20 +60,18 @@ func TallyFromJSON(json_string string) Result[Tally] {
 }
 
 // Adds two Tallys together.
-func (tally1 Tally) add(tally2 Tally) Tally {
-	return Tally{
-		Usernames: tally1.Usernames + tally2.Usernames,
-		Emails:    tally1.Emails + tally2.Emails,
-		Phones:    tally1.Phones + tally2.Phones,
-		Hashes:    tally1.Hashes + tally2.Hashes,
-		Salts:     tally1.Salts + tally2.Salts,
-		Ips:       tally1.Ips + tally2.Ips,
-		Names:     tally1.Names + tally2.Names,
-		Passwords: tally1.Passwords + tally2.Passwords,
-		Addresses: tally1.Addresses + tally2.Addresses,
-		Companies: tally1.Companies + tally2.Companies,
-		Other:     tally1.Other + tally2.Other,
-	}
+func (tally1 *Tally) add(tally2 Tally) {
+	(*tally1).Usernames += tally2.Usernames;
+	(*tally1).Emails += tally2.Emails;
+	(*tally1).Phones += tally2.Phones;
+	(*tally1).Hashes += tally2.Hashes;
+	(*tally1).Salts += tally2.Salts;
+	(*tally1).Ips += tally2.Ips;
+	(*tally1).Names += tally2.Names;
+	(*tally1).Passwords += tally2.Passwords;
+	(*tally1).Addresses += tally2.Addresses;
+	(*tally1).Companies += tally2.Companies;
+	(*tally1).Other += tally2.Other;
 }
 
 // Converts an APIResponse to a human-readable string
