@@ -6,14 +6,15 @@ import (
 	"testing"
 )
 
-func TestSerializationCycleEquivalence(t *testing.T) {
-	serialized_json := "{\"usernames\": 1, \"emails\": 2, \"phones\": 3, \"hashes\": 4, \"salts\": 5, \"ips\": 6, \"names\": 7, \"passwords\": 8, \"addresses\": 9, \"companies\": 10, \"other\": 11}"
-
-	tally_result := TallyFromJSON(serialized_json)
-	if is_err(tally_result) {
-		t.Fatal("Failed to deserialize Tally: " + tally_result.unwrap_err())
+func TestSerializationCycleEquivalence ( t *testing.T ) {
+	serialized_json := "{\"usernames\": 1, \"emails\": 2, \"phones\": 3, \"hashes\": 4, \"salts\": 5, \"ips\": 6, \"names\": 7, \"passwords\": 8, \"addresses\": 9, \"companies\": 10, \"other\": 11}";
+		
+	tally_result := TallyFromJSON(serialized_json);
+	if tally_result.IsErr() {
+		t.Fatal("Failed to deserialize Tally: " + tally_result.UnwrapErr());
 	}
-	tally := tally_result.unwrap_ok()
+
+	tally := tally_result.UnwrapOk();
 
 	log.Println("Deserialized Tally: ")
 	log.Println(strconv.Itoa(tally.Usernames))
