@@ -1,38 +1,89 @@
 package main;
 
+import (
+	"encoding/json"
+	"fmt"
+	"strconv"
+);
+
 // Represents the final tally of for the PII that was requested
 type Tally struct {
-	usernames int32;
-	emails    int32;
-	phones    int32;
-	hashes    int32;
-	salts     int32;
-	ips       int32;
-	names     int32;
-	passwords int32;
-	addresses int32;
-	companies int32;
-	other     int32;
-};
+    Usernames int `json:"usernames"`
+    Emails    int `json:"emails"`
+    Phones    int `json:"phones"`
+    Hashes    int `json:"hashes"`
+    Salts     int `json:"salts"`
+    Ips       int `json:"ips"`
+    Names     int `json:"names"`
+    Passwords int `json:"passwords"`
+    Addresses  int `json:"addresses"`
+    Companies  int `json:"companies"`
+    Other      int `json:"other"`
+}
+
+// Serializes a Tally to a JSON string, returning
+//  a Result containing the JSON string or an error
+func (tally Tally) JSONString() string {
+	var body string = "{";
+
+	body += "\"usernames\": " + strconv.Itoa(tally.Usernames) + ", ";
+	body += "\"emails\": "    + strconv.Itoa(tally.Emails)    + ", ";
+	body += "\"phones\": "    + strconv.Itoa(tally.Phones)    + ", ";
+	body += "\"hashes\": "    + strconv.Itoa(tally.Hashes) 	  + ", ";
+	body += "\"salts\": "     + strconv.Itoa(tally.Salts) 	  + ", ";
+	body += "\"ips\": " 	  + strconv.Itoa(tally.Ips) 	  + ", ";
+	body += "\"names\": "     + strconv.Itoa(tally.Names) 	  + ", ";
+	body += "\"passwords\": " + strconv.Itoa(tally.Passwords) + ", ";
+	body += "\"addresses\": " + strconv.Itoa(tally.Addresses) + ", ";
+	body += "\"companies\": " + strconv.Itoa(tally.Companies) + ", ";
+	body += "\"other\": "     + strconv.Itoa(tally.Other);
+
+	body += "}";
+
+	return body;
+}
+
+// Deserializes a Tally from a JSON string, returning
+//  a Result containing the Tally or an error
+func TallyFromJson(json_string string) Result[Tally] {
+	res := Tally{};
+	str := `{"usernames": 1, "emails": 2, "phones": 3, "hashes": 4, "salts": 5, "ips": 6, "names": 7, "passwords": 8, "addresses": 9, "companies": 10, "other": 11}`;
+	
+    fmt.Println(res)
+	
+	err := json.Unmarshal([]byte(str), &res);
+
+	if err != nil {
+		return Err[Tally]( "Failed to deserialize: " + err.Error() );
+	}
+
+    fmt.Println(res)
+	fmt.Println("Deserialized tally: ");
+
+	return Ok( res );
+}
+
 
 // Adds two Tallys together.
 func (tally1 Tally) add(tally2 Tally) Tally {
 	return Tally{
-		usernames: tally1.usernames + tally2.usernames,
-		emails:    tally1.emails + tally2.emails,
-		phones:    tally1.phones + tally2.phones,
-		hashes:    tally1.hashes + tally2.hashes,
-		salts:     tally1.salts + tally2.salts,
-		ips:       tally1.ips + tally2.ips,
-		names:     tally1.names + tally2.names,
-		passwords: tally1.passwords + tally2.passwords,
-		addresses: tally1.addresses + tally2.addresses,
-		companies: tally1.companies + tally2.companies,
-		other:     tally1.other + tally2.other,
+		Usernames: tally1.Usernames + tally2.Usernames,
+		Emails:    tally1.Emails + tally2.Emails,
+		Phones:    tally1.Phones + tally2.Phones,
+		Hashes:    tally1.Hashes + tally2.Hashes,
+		Salts:     tally1.Salts + tally2.Salts,
+		Ips:       tally1.Ips + tally2.Ips,
+		Names:     tally1.Names + tally2.Names,
+		Passwords: tally1.Passwords + tally2.Passwords,
+		Addresses: tally1.Addresses + tally2.Addresses,
+		Companies: tally1.Companies + tally2.Companies,
+		Other:     tally1.Other + tally2.Other,
 	};
 }
 
+/*
 // Converts an APIResponse to a human-readable string
 func (response Tally) String() string {
 	return "todo!();";
 };
+*/
