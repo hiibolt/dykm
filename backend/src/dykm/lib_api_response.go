@@ -1,18 +1,21 @@
 package main;
 
 // Represents the final tally of for the PII that was requested
-type APIResponse struct {
-	email    int8;
-	phone    int8;
-	username int8;
-	ip       int8;
-	password int8;
-	name     int8;
-	hash     int8;
-	total    int8;
+type Tally struct {
+	usernames int32;
+	emails    int32;
+	phones    int32;
+	hashes    int32;
+	salts     int32;
+	ips       int32;
+	names     int32;
+	passwords int32;
+	addresses int32;
+	companies int32;
+	other     int32;
 };
 
 // Converts an APIResponse to a human-readable string
-func (response APIResponse) String() string {
-	return "HELLO CHAT";
+func (response Tally) String() string {
+	return "todo!();";
 };
