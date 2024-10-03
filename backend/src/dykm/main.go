@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -35,7 +36,7 @@ func api_handler(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-	var port string = ":8000"
+	var port string = ":" + os.Getenv("PORT")
 
 	http.Handle(
 		"/public/",
