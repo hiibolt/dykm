@@ -14,7 +14,14 @@ func TallyResults ( req APIRequest) Result[Tally] {
         result.add(tally);
 
       case "phone":
-        result.Phones += 0; // BulkVSQuery(req.PII);
+        // tally_result := BulkVSQuery(req.PII);
+
+        // if tally_result.IsErr(){
+        //   return tally_result;
+        // }
+
+        // var tally Tally = tally_result.UnwrapOk();
+        // result.add(tally);
 
       case "username":
         tally_result1 := SnusbaseQuery(req.PIIType, req.PII);

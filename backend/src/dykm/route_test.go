@@ -1,30 +1,24 @@
 package main
 
-// import (
-// 	"log"
-// 	"testing"
-// )
+import (
+	"log"
+	"testing"
+)
 
-// func TestPrettyStrings(t *testing.T) {
-// 	tally := Tally{}
+func TestSnusbaseQueryEmail(t *testing.T) {
+	request := APIRequest{
+		PIIType: PIITypeEmail,
+		PII:     "codins12345@example.com",
+	}
 
-// 	expected_output := `
-//   Usernames:  0
-//   Emails:     0
-//   Phones:     0
-//   Hashes:     0
-//   Salts:      0
-//   Ips:        0
-//   Names:      0
-//   Passwords:  0
-//   Addresses:  0
-//   Companies:  0
-//   Other:      0`
+	tally_result := SnusbaseQuery(request.PIIType, request.PII);
 
-// 	log.Println(expected_output)
-// 	log.Println(tally.String())
-// 	if expected_output != tally.String() {
-// 		t.Fatal("Output does not match expected output")
-// 	}
+	if(tally_result.IsErr()){
+		log.Fatalln(tally_result.UnwrapErr());
+		log.Fatalln("Error while fetching data via snusbase query via email!");
+	}
 
-// }
+	tally := tally_result.UnwrapOk();
+
+	log.Println(tally.String())
+}
