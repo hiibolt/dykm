@@ -1,5 +1,9 @@
 package main;
 
+import (
+	"fmt"
+)
+
 // Represents an optional type which can contain an error
 type Result[T any] struct {
 	ok bool;
@@ -22,9 +26,11 @@ func (result Result[T]) IsErr() bool {
 func (result Result[T]) UnwrapOk() T {
 	if result.IsOk() {
 		return result.ok_value;
-	}
+	}    
+	
+	formatted_err := fmt.Sprintf("Attempted to unwrap on an error!\n%s", result.err_value)
 
-	panic("Attempted to unwrap an error");
+	panic(formatted_err);
 }
 func (result Result[T]) UnwrapErr() string {
 	if result.IsErr() {

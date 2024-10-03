@@ -53,7 +53,7 @@ func TallyFromJSON(json_string string) Result[Tally] {
 	err := json.Unmarshal([]byte(json_string), &res)
 
 	if err != nil {
-		return Err[Tally]("Failed to deserialize: " + err.Error())
+		return Err[Tally]("\nFailed to deserialize the following string:\n\"" + json_string + "\"\n\nRaw Error: " + err.Error())
 	}
 
 	return Ok(res)
