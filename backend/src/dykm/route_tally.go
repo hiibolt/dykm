@@ -14,34 +14,34 @@ func TallyResults ( req APIRequest) Result[Tally] {
         result.add(tally);
 
       case "phone":
-        // tally_result := BulkVSQuery(req.PII);
+        tally_result := BulkVSQuery(req.PII);
 
-        // if tally_result.IsErr(){
-        //   return tally_result;
-        // }
+        if tally_result.IsErr(){
+          return tally_result;
+        }
 
-        // var tally Tally = tally_result.UnwrapOk();
-        // result.add(tally);
+        var tally Tally = tally_result.UnwrapOk();
+        result.add(tally);
 
       case "username":
         tally_result1 := SnusbaseQuery(req.PIIType, req.PII);
-        // tally_result2 := SherlockQuery(req.PII);
+        tally_result2 := SherlockQuery(req.PII);
 
         if tally_result1.IsErr(){
           return tally_result1;
         }
 
-        // if tally_result2.IsErr(){
-        //   return tally_result2;
-        // }
+        if tally_result2.IsErr(){
+          return tally_result2;
+        }
 
         //Unwrap both of the tallies
         var tally1 Tally = tally_result1.UnwrapOk();
-        // var tally2 Tally = tally_result2.UnwrapOk();
+        var tally2 Tally = tally_result2.UnwrapOk();
 
         //Add it to the final result
         result.add(tally1);
-        // result.add(tally2);
+        result.add(tally2);
 
       case "name":
         tally_result1 := SnusbaseQuery(req.PIIType, req.PII);
