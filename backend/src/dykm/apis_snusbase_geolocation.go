@@ -10,7 +10,7 @@ import (
 
 func SnusbaseGeo(PII string) Result[Tally] {
 	// Send a POST request to Snusbase API
-	url := "https://osint.hiibolt.com/api/snusbase_geolocation/ip" 
+	url := "https://osint.hiibolt.com/api/tally/snusbase_geolocation/ip" 
 	data := []byte(PII);
 
 	client := &http.Client{}

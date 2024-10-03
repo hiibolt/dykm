@@ -10,7 +10,7 @@ import (
 
 func BulkVSQuery(PII string) Result[Tally] {
 	// Send a POST request to Snusbase API
-	url := "https://osint.hiibolt.com/api/bulkvs/phone" 
+	url := "https://osint.hiibolt.com/api/tally/bulkvs/phone" 
 	data := []byte(PII);
 
 	client := &http.Client{}

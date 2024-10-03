@@ -10,7 +10,7 @@ import (
 
 func SherlockQuery(PII string) Result[Tally] {
 	// Send a POST request to Snusbase API
-	url := "https://osint.hiibolt.com/api/sherlock/username" 
+	url := "https://osint.hiibolt.com/api/tally/sherlock/username" 
 	data := []byte(PII);
 
 	client := &http.Client{}
