@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -12,6 +11,7 @@ import (
 func public_handler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "../../../frontend/pages/index.html")
 }
+
 func page_handler(w http.ResponseWriter, r *http.Request) {
 	path_segments := strings.Split(r.URL.Path, "/")
 
@@ -31,6 +31,7 @@ func page_handler(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "../../../frontend/pages/404.html")
 	}
 }
+
 func api_handler(w http.ResponseWriter, req *http.Request) {
 	io.WriteString(w, "Hello, world!\n")
 }
@@ -51,6 +52,6 @@ func main() {
 		api_handler,
 	)
 
-	log.Println(fmt.Sprintf("Listing for requests at http://localhost%s/!", port))
+	log.Printf("Listing for requests at http://localhost%s/!", port)
 	log.Fatal(http.ListenAndServe(port, nil))
 }
