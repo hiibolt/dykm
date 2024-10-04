@@ -10,7 +10,8 @@ import (
 func SnusbaseQuery(PIIType PIIType, PII string) Result[Tally] {
 	// Send a POST request to Snusbase API
 	url := "https://osint.hiibolt.com/api/tally/snusbase_query/" + string(PIIType)
-	data := []byte(PII)
+  
+	data := []byte(PII);
 
 	client := &http.Client{}
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
