@@ -2,7 +2,6 @@ package main;
 
 import (
 	"bytes"
-	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -10,7 +9,7 @@ import (
 
 func BulkVSQuery(PII string) Result[Tally] {
 	// Send a POST request to Snusbase API
-	url := "https://osint.hiibolt.com/api/bulkvs/phone" 
+	url := "https://osint.hiibolt.com/api/tally/bulkvs/phone" 
 	data := []byte(PII);
 
 	client := &http.Client{}
@@ -38,8 +37,6 @@ func BulkVSQuery(PII string) Result[Tally] {
 	if err != nil {
 		return Err[Tally](err.Error());
 	}
-
-	fmt.Println(body);
 
 	return TallyFromJSON(string(body));
 }

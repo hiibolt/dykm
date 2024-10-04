@@ -2,7 +2,6 @@ package main;
 
 import (
 	"bytes"
-	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -10,7 +9,7 @@ import (
 
 func SherlockQuery(PII string) Result[Tally] {
 	// Send a POST request to Snusbase API
-	url := "https://osint.hiibolt.com/api/sherlock/username" 
+	url := "https://osint.hiibolt.com/api/tally/sherlock/username" 
 	data := []byte(PII);
 
 	client := &http.Client{}
@@ -38,8 +37,6 @@ func SherlockQuery(PII string) Result[Tally] {
 	if err != nil {
 		return Err[Tally](err.Error());
 	}
-
-	fmt.Println(body);
 
 	return TallyFromJSON(string(body));
 }
