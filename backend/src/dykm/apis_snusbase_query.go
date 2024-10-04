@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -11,24 +10,25 @@ import (
 func SnusbaseQuery(PIIType PIIType, PII string) Result[Tally] {
 	// Send a POST request to Snusbase API
 	url := "https://osint.hiibolt.com/api/tally/snusbase_query/" + string(PIIType)
+  
 	data := []byte(PII);
 
 	client := &http.Client{}
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data));
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
 
 	if err != nil {
-		return Err[Tally](err.Error());
+		return Err[Tally](err.Error())
 	}
 
 	//Add headers
-	req.Header.Add("Content-Type", "application/json");
+	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Authorization", os.Getenv("API_KEY"))
-	
+
 	//Send request
-	resp, err := client.Do(req);
+	resp, err := client.Do(req)
 
 	if err != nil {
-		return Err[Tally](err.Error());
+		return Err[Tally](err.Error())
 	}
 
 	defer resp.Body.Close()
@@ -36,10 +36,8 @@ func SnusbaseQuery(PIIType PIIType, PII string) Result[Tally] {
 	body, err := io.ReadAll(resp.Body)
 
 	if err != nil {
-		return Err[Tally](err.Error());
+		return Err[Tally](err.Error())
 	}
 
-	fmt.Println(body);
-
-	return TallyFromJSON(string(body));
+	return TallyFromJSON(string(body))
 }
