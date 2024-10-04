@@ -39,7 +39,7 @@ func api_handler(w http.ResponseWriter, req *http.Request) {
 	}
 
 	//Parse form from user
-	err := req.ParseForm()
+	err := req.ParseMultipartForm(10 << 20)
 
 	log.Println(req.Form)
 
