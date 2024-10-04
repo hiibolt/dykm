@@ -19,25 +19,38 @@
     <h1>App</h1>
     <p>Hello, World from the App Page!</p>
     <br>
-    <form action="/api/tally/" method="POST" id="TallyForm">
+    <form action="/api/tally/" method="POST" id="TallyForm"> 
         <label for="PIIType">Choose a PII Type</label>
         <br>
         <select name="PIIType" id="PIIType">
-                <option value="Usernames">Username</option>
-                <option value="Email">Email</option>
-                <option value="Phone">Phone</option>
-                <option value="Hash">Hash</option>
-                <option value="Ip">Ip</option>
-                <option value="Name">Name</option>
-                <option value="Password">Password</option>
+                <option value="username">Username</option>
+                <option value="email">Email</option>
+                <option value="phone">Phone</option>
+                <option value="hash">Hash</option>
+                <option value="ip">Ip</option>
+                <option value="name">Name</option>
+                <option value="password">Password</option>
         </select>
         <br>
         <br>
-        <input type="text" id="PIIValue" placeholder="Enter PII Value">
+        <input type="text" id="PII" name="PII" placeholder="Enter PII Value"> </input>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit"> </input>
     </form>
-    <p id="request" > Nothing's Happened</p>
+    <p id="response" > Nothing's Happened</p>
+
+    <p id="usernames" > usernames: </p>
+    <p id="emails" > email: </p>
+    <p id="phones" > phone: </p>
+    <p id="hashes" > hash: </p>
+    <p id="ips" > ip: </p>
+    <p id="names" > name: </p>
+    <p id="passwords" > password: </p>
+
+
+
+
+
     <script src="/public/scripts/app.js"></script>
 </body>
 </html>
