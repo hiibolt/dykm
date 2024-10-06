@@ -28,9 +28,9 @@
         # Banner Function
         burger() {
           printf "$RESET""[ Nix Flake ]\n"
-          printf "$PINK""run$RESET    | ""$PINK""r""$RESET""\n- Starts the Go Webserver\n"
-          printf "$PINK""test$RESET   | ""$PINK""t""$RESET""\n- Runs the tests in all files ending in \`test.go\`\n"
-          printf "$PINK""build$RESET  | ""$PINK""b""$RESET""\n- Builds the Go Webserver, producing \`./dykm\`\n\n"
+          printf "$PINK""run$RESET   | ""$PINK""r""$RESET""\n- Starts the Go Webserver\n"
+          printf "$PINK""test$RESET  | ""$PINK""t""$RESET""\n- Runs the tests in all files ending in \`test.go\`\n"
+          printf "$PINK""build$RESET | ""$PINK""b""$RESET""\n- Builds the Go Webserver, producing \`./dykm\`\n\n"
         }
 
         # Verify WD is `*/dykm`
