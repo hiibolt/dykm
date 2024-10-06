@@ -62,7 +62,7 @@
         # Run Command
         # Run Command
         run() {
-            verify_pw && start_application_in_build
+            verify_pw && ./build.sh && start_application_in_build
         }
         alias r="run"
 
