@@ -15,7 +15,10 @@
     devShells.x86_64-linux.default = pkgs.mkShell {
       nativeBuildInputs = with pkgs; [ openssl.dev pkg-config ];
       buildInputs = with pkgs; [ go cargo rustc rustfmt rust-analyzer clippy ];
-      shellHook = "";
+      shellHook = ''
+        alias run="cd ./backend/src/dykm; go run .; cd -"
+        alias test="cd ./backend/src/dykm; go test -count=1 .; cd -"
+        '';
       RUST_SRC_PATH = pkgs.rustPlatform.rustLibSrc;
     };
   };

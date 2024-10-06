@@ -29,6 +29,14 @@ func TestHTMLInjector(t *testing.T) {
 	html_contents := "<!--~__test.html~-->";
 	html_test_contents := "<p>meow</p>";
 
+	// Throw an error if the file already exists
+	if _, err := os.Stat("../../../frontend/pages/__test.html"); err == nil {
+		t.Fatal("File '../../../frontend/pages/__test.html' already exists!");
+	}
+	if _, err := os.Stat("../../../frontend/components/__test.html"); err == nil {
+		t.Fatal("File '../../../frontend/components/__test.html' already exists!");
+	}
+
 	// Create these two files with the `os` library
 	os.WriteFile("../../../frontend/pages/__test.html", []byte(html_contents), 0644);
 	os.WriteFile("../../../frontend/components/__test.html", []byte(html_test_contents), 0644);
