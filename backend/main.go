@@ -44,7 +44,11 @@ func main() {
 	)
 	http.HandleFunc(
 		"/api/tally",
-		api_handler,
+		tally_handler,
+	)
+	http.HandleFunc(
+		"/api/tele/bulkvs_cnam",
+		tele_bulkvs_cnam_handler,
 	)
 
 	log.Printf("Listing for requests at http://localhost%s/!", port)

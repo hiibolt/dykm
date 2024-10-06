@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-func api_handler(w http.ResponseWriter, req *http.Request) {
+func tally_handler(w http.ResponseWriter, req *http.Request) {
 
 	if req.Method != "POST" {
 		return

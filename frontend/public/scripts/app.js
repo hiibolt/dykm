@@ -21,7 +21,6 @@ document.getElementById('TallyForm').addEventListener('submit', function(event) 
             console.log(data)
             document.getElementById('results').style.display = "block";
 
-
             // Display the response or handle it as needed
             document.getElementById('response').innerText = "Form submitted successfully!";
             document.getElementById('usernames').innerText = "Usernames: " + data.usernames; 
@@ -31,7 +30,6 @@ document.getElementById('TallyForm').addEventListener('submit', function(event) 
             document.getElementById('ips').innerText = "Ips: " + data.ips;
             document.getElementById('names').innerText = "Names: " + data.names;
             document.getElementById('passwords').innerText = "Passwords: " + data.passwords;
-
         })
         .catch(error => {
             // Handle any errors
