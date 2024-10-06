@@ -13,8 +13,12 @@ WORKDIR /app
 # Copy All Files
 COPY . .
 
+# Run build.sh
+RUN chmod +x build.sh
+RUN ./build.sh
+
 # Run The Go App
-WORKDIR /app/backend/src/dykm
+WORKDIR /app/build
 CMD ["go", "run", "."]
 
 # Expose The Application
