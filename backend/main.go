@@ -7,7 +7,6 @@ import (
 	"os"
 )
 
-
 type TallyErrResponse struct {
 	Status  string `json:"status"`
 	Message string `json:"message"`
@@ -37,7 +36,7 @@ func main() {
 
 	http.Handle(
 		"/public/",
-		http.StripPrefix("/public/", http.FileServer(http.Dir("../../../frontend/public"))),
+		http.StripPrefix("/public/", http.FileServer(http.Dir("../frontend/public"))),
 	)
 	http.HandleFunc(
 		"/",
