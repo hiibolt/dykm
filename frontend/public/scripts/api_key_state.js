@@ -30,8 +30,55 @@ function getApiKey() {
     return localStorage.getItem('User-API-Key');
 }
 
+async function checkApiKey(apiKey) {
+    try {
+        const formData = new FormData();
+    
+        // Add the API key to the form data
+        formData.append('User-API-Key', apiKey);
+    
+        let res = await fetch('/api/user/get', {  // The backend URL
+            method: 'POST',
+            body: formData
+        });
+
+        if (!res.ok) {
+            return false;
+        }
+        
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+// Gets the balance from the backend
+async function getBalance() {
+    const formData = new FormData();
+
+    // Add the API key to the form data
+    formData.append('User-API-Key', getApiKey());
+
+    let res = await fetch('/api/user/get', {  // The backend URL
+        method: 'POST',
+        body: formData
+    });
+    
+    // Verify that the response is OK
+    if (!res.ok) {
+        throw new Error('Failed to submit form');
+    }
+
+    let data = await res.json();
+
+    console.log(data)
+    document.getElementById('api_key_balance').innerText = data.balance;
+
+    return data.balance;
+}
+
 // Refreshes the state of the page based on the API key stored in the browser's local storage
-function refresh_state(){
+async function refresh_state(){
     // If there is an API key stored in the browser's local storage, hide the "not_logged_in" div
     if (hasApiKey()) {
         document.getElementById('not_logged_in').style.display = "none";
@@ -43,8 +90,19 @@ function refresh_state(){
             .innerText = getApiKey().substring(0, 4) + "*".repeat(getApiKey().length - 4);
 
         // Fetch the balance from the backend
-        // todo!();
-    
+        if ( !checkApiKey(getApiKey()) ) {
+            document.getElementById('error_message').innerText = "`" + getApiKey() + "` is an invalid API Key!";
+            return;
+        }
+
+        try {
+            await getBalance();
+        } catch (error) {
+            console.log(error);
+            return;
+        }
+
+        document.getElementById('error_message').innerText = "";
     } else {
         document.getElementById('not_logged_in').style.display = "block";
         document.getElementById('logged_in').style.display = "none";
@@ -59,11 +117,21 @@ document.getElementById('set_key_button').addEventListener('click', function() {
         return;
     }
 
-    setApiKey(apiKey);
+    checkApiKey(apiKey)
+        .then((res) => {
+            console.log("API Key set: " + res);
 
-    console.log("API Key set to: " + apiKey);
-
-    refresh_state();
+            if (!res) {
+                document.getElementById('error_message').innerText = "`" + apiKey + "` is an invalid API Key!";
+            } else {
+                document.getElementById('error_message').innerText = "";
+                setApiKey(apiKey);
+                refresh_state();
+            }
+        })
+        .catch((e) => {
+            console.log(e);
+        });
 });
 
 // When the "reset_key_button" is clicked, remove the API key from the browser's local storage
