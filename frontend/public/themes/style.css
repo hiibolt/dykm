@@ -17,10 +17,8 @@ p {
     margin: 0 0 1em;
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.login_component_container {
+    margin: 5px;
+    border: 1px solid black;
+    background-color: white;
 }

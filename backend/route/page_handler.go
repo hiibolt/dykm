@@ -29,7 +29,7 @@ func page_handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	switch path_segments[1] {
-	case "about", "app":
+	case "about", "app", "pricing":
 		var final_html_result Result[string] = inject_component(path_segments[1]+".html");
 
 		// Check for errors

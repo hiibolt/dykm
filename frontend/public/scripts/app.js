@@ -16,9 +16,18 @@ document.getElementById('TallyForm').addEventListener('submit', function(event) 
         body: formData
         // No need to manually set headers for FormData
     })
-        .then(response => response.json()) // Parse the response as JSON
+        .then(response => {
+            // Verify that the response is OK
+            if (!response.ok) {
+                throw new Error('Failed to submit form');
+            }
+
+            return response.json()
+        }) // Parse the response as JSON
         .then(data => {
             console.log(data)
+            // 
+
             document.getElementById('results').style.display = "block";
 
             // Display the response or handle it as needed

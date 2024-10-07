@@ -50,6 +50,10 @@ func main() {
 		"/api/tele/bulkvs_cnam",
 		tele_bulkvs_cnam_handler,
 	)
+	http.HandleFunc(
+		"/api/user/get",
+		user_get_handler,
+	)
 
 	log.Printf("Listing for requests at http://localhost%s/!", port)
 	log.Fatal(http.ListenAndServe(port, nil))
