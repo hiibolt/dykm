@@ -38,5 +38,10 @@ func SnusbaseGeo(PII string) Result[Tally] {
 		return Err[Tally](err.Error());
 	}
 
+	// Check that it was a 200 OK response
+	if resp.StatusCode != 200 {
+		return Err[Tally](string(body));
+	}
+
 	return TallyFromJSON(string(body));
 }

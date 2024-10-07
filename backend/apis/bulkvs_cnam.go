@@ -39,5 +39,10 @@ func BulkVSCNAMQuery(PII string, user_api_key string) Result[BulkVS] {
 		return Err[BulkVS](err.Error());
 	}
 
+	// Check that it was a 200 OK response
+	if resp.StatusCode != 200 {
+		return Err[BulkVS](string(body));
+	}
+
 	return BulkVSFromJSON(string(body));
 }

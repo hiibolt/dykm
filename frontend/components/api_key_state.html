@@ -1,0 +1,18 @@
+<div class="login_component_container">
+    <div id="not_logged_in">
+        <input type="text" id="api_key_input" placeholder="Enter API Key" />
+        <div>
+            <button id="set_key_button">Set Key</button>
+            <button id="get_key_button" onclick="location.href='/pricing'">Get Key</button>
+        </div>
+    </div>
+    <div id="logged_in" style="display:none">
+        <div>
+            <p>API Key: <span id="api_key_display">************</span></p>
+            <button id="reset_key_button">Reset Key</button>
+        </div>
+        <p>Balance: <span id="api_key_balance"></span></p>
+    </div>
+</div>
+
+<script src="/public/scripts/api_key_state.js"></script>
