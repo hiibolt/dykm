@@ -1,37 +1,35 @@
 package main
 
-// import (
-// 	"encoding/json"
-// 	"strconv"
-// )
+import (
+	"encoding/json"
+	"strings"
+)
 
-// // Represents the final tally of for the PII that was requested
-// type Sherlock struct {
-// 	Array `json:"vector"`
-// }
+// Represents the final Sherlock of for the PII that was requested
+type Sherlock struct {
+	username *string  `json:"username"`
+	sites    []string `json:"sites"`
+}
 
-// //	a Result containing the JSON string or an error
-// func (bulkVS BulkVS) JSONString() string {
-// 	var body string = "{"
+// a Result containing the JSON string or an error
+func (sherlock Sherlock) JSONString() string {
+	var body string = "{"
+	body += "\"username\": \"" + *sherlock.username + "\", "
+	body += "\"sites\": \"" + strings.Join(sherlock.sites, ", ") + "\", "
+	body += "}"
 
-// 	if bulkVS.Name != nil {
-// 		body += "\"name\": \"" + *bulkVS.Name + "\", "
-// 	}
+	return body
+}
 
-// 	body += "}"
+// Deserializes a Sherlock from a JSON string, returning
+func SherlockFromJSON(json_string string) Result[Sherlock] {
+	res := Sherlock{}
 
-// 	return body
-// }
+	err := json.Unmarshal([]byte(json_string), &res)
 
-// // Deserializes a BulkVS from a JSON string, returning
-// func BulkVSFromJSON(json_string string) Result[BulkVS] {
-// 	res := BulkVS{}
+	if err != nil {
+		return Err[Sherlock]("\nFailed to deserialize the following string:\n\"" + json_string + "\"\n\nRaw Error: " + err.Error())
+	}
 
-// 	err := json.Unmarshal([]byte(json_string), &res)
-
-// 	if err != nil {
-// 		return Err[BulkVS]("\nFailed to deserialize the following string:\n\"" + json_string + "\"\n\nRaw Error: " + err.Error())
-// 	}
-
-// 	return Ok(res)
-// }
+	return Ok(res)
+}

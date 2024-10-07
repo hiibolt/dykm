@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-// Represents the final tally of for the PII that was requested
+// Represents the final BulkVS of for the PII that was requested
 type BulkVS struct {
 	Name   *string `json:"name"`
 	Number *string `json:"number"`
